@@ -1,0 +1,433 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2821
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+    <meta charset="UTF-8">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <title>SwiftLift Valet</title>\
+    <!-- Tailwind CSS CDN -->\
+    <script src="https://cdn.tailwindcss.com"></script>\
+    <!-- Google Fonts - Inter -->\
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">\
+    <style>\
+        body \{\
+            font-family: 'Inter', sans-serif;\
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */\
+        \}\
+        /* Custom scrollbar for better aesthetics */\
+        ::-webkit-scrollbar \{\
+            width: 8px;\
+            height: 8px;\
+        \}\
+        ::-webkit-scrollbar-track \{\
+            background: #f1f1f1;\
+            border-radius: 10px;\
+        \}\
+        ::-webkit-scrollbar-thumb \{\
+            background: #888;\
+            border-radius: 10px;\
+        \}\
+        ::-webkit-scrollbar-thumb:hover \{\
+            background: #555;\
+        \}\
+        /* Simple fade-in animation for hero section elements */\
+        @keyframes fadeInMoveUp \{\
+            from \{\
+                opacity: 0;\
+                transform: translateY(20px);\
+            \}\
+            to \{\
+                opacity: 1;\
+                transform: translateY(0);\
+            \}\
+        \}\
+        .animate-fade-in-up \{\
+            animation: fadeInMoveUp 0.8s ease-out forwards;\
+        \}\
+        .animate-fade-in-up.delay-100 \{\
+            animation-delay: 0.1s;\
+        \}\
+        .animate-fade-in-up.delay-200 \{\
+            animation-delay: 0.2s;\
+        \}\
+\
+        /* Responsive container for the Google Calendar iframe */\
+        .calendar-container \{\
+            position: relative;\
+            width: 100%;\
+            padding-bottom: 75%; /* 4:3 Aspect Ratio (height / width * 100%) */\
+            height: 0;\
+            overflow: hidden;\
+            border-radius: 0.75rem; /* Matches Tailwind's rounded-xl */\
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Matches Tailwind's shadow-lg */\
+        \}\
+\
+        .calendar-container iframe \{\
+            position: absolute;\
+            top: 0;\
+            left: 0;\
+            width: 100%;\
+            height: 100%;\
+            border: 0; /* Removing the default iframe border, keeping Google's subtle style */\
+        \}\
+    </style>\
+</head>\
+<body class="bg-gray-50 text-gray-800 antialiased">\
+\
+    <!-- Header Section -->\
+    <header class="bg-white shadow-lg fixed w-full z-10 py-4 px-6 md:px-12 rounded-b-lg">\
+        <nav class="container mx-auto flex justify-between items-center">\
+            <a href="#home" class="text-3xl font-bold text-emerald-700 tracking-tight">SwiftLift Valet</a>\
+            <div class="hidden md:flex space-x-8">\
+                <a href="#home" class="text-gray-600 hover:text-emerald-700 font-medium transition duration-300">Home</a>\
+                <a href="#services" class="text-gray-600 hover:text-emerald-700 font-medium transition duration-300">Services</a>\
+                <a href="#calendar" class="text-gray-600 hover:text-emerald-700 font-medium transition duration-300">Schedule</a>\
+                <a href="#about" class="text-gray-600 hover:text-emerald-700 font-medium transition duration-300">About Us</a>\
+                <a href="#contact" class="text-gray-600 hover:text-emerald-700 font-medium transition duration-300">Contact</a>\
+                <a href="#faq" class="text-gray-600 hover:text-emerald-700 font-medium transition duration-300">FAQ</a>\
+            </div>\
+            <!-- Mobile Menu Button -->\
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-emerald-700 focus:outline-none">\
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>\
+            </button>\
+        </nav>\
+        <!-- Mobile Menu Overlay -->\
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 transition-all duration-300 ease-in-out origin-top rounded-b-lg">\
+            <a href="#home" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 transition duration-200">Home</a>\
+            <a href="#services" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 transition duration-200">Services</a>\
+            <a href="#calendar" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 transition duration-200">Schedule</a>\
+            <a href="#about" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 transition duration-200">About Us</a>\
+            <a href="#contact" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 transition duration-200">Contact</a>\
+            <a href="#faq" class="block px-6 py-2 text-gray-700 hover:bg-gray-100 transition duration-200">FAQ</a>\
+        </div>\
+    </header>\
+\
+    <main>\
+        <!-- Hero Section -->\
+        <section id="home" class="relative bg-gradient-to-r from-emerald-600 to-green-800 text-white flex items-center justify-center min-h-screen pt-24 pb-12 overflow-hidden">\
+            <div class="absolute inset-0 z-0 opacity-10" style="background-image: url('https://placehold.co/1920x1080/16A34A/FFFFFF?text=Green+Waste+Management'); background-size: cover; background-position: center;"></div>\
+            <div class="container mx-auto px-6 py-12 text-center relative z-10 max-w-4xl">\
+                <h1 class="text-5xl md:text-6xl font-extrabold leading-tight mb-6 animate-fade-in-up">\
+                    Sustainable Waste Management for a Cleaner Future\
+                </h1>\
+                <p class="text-xl md:text-2xl mb-10 opacity-90 animate-fade-in-up delay-100">\
+                    SwiftLift Valet provides eco-friendly, reliable, and efficient waste disposal and recycling services for homes and businesses.\
+                </p>\
+                <a href="#contact" class="inline-block bg-white text-emerald-700 hover:bg-emerald-50 hover:scale-105 transform transition-all duration-300 font-bold py-4 px-8 rounded-full shadow-lg text-lg animate-fade-in-up delay-200">\
+                    Request a Free Quote\
+                </a>\
+            </div>\
+        </section>\
+\
+        <!-- Services Section -->\
+        <section id="services" class="py-16 md:py-24 bg-gray-100">\
+            <div class="container mx-auto px-6 max-w-6xl">\
+                <h2 class="text-4xl font-bold text-center text-emerald-700 mb-12">Our Sustainable Services</h2>\
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">\
+                    <!-- Service Card 1: Residential Waste -->\
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300">\
+                        <div class="text-emerald-500 mb-4 flex justify-center">\
+                            <!-- SVG for Residential Waste (e.g., house or trash can) -->\
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m0 0l-7 7-7-7m7 7v10a1 1 0 01-1 1h-3"></path></svg>\
+                        </div>\
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Residential Waste Collection</h3>\
+                        <p class="text-gray-600 text-center">\
+                            Reliable curbside trash and recycling pick-up for homes and communities.\
+                        </p>\
+                    </div>\
+\
+                    <!-- Service Card 2: Commercial Waste -->\
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300">\
+                        <div class="text-emerald-500 mb-4 flex justify-center">\
+                            <!-- SVG for Commercial Waste (e.g., building or factory) -->\
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>\
+                        </div>\
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Commercial Waste Solutions</h3>\
+                        <p class="text-gray-600 text-center">\
+                            Tailored waste management plans for businesses, offices, and industrial sites.\
+                        </p>\
+                    </div>\
+\
+                    <!-- Service Card 3: Recycling & Diversion -->\
+                    <div class="bg-white rounded-xl shadow-lg p-8 transform hover:scale-105 transition-all duration-300">\
+                        <div class="text-emerald-500 mb-4 flex justify-center">\
+                            <!-- SVG for Recycling (e.g., recycling symbol) -->\
+                            <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004 10.59V12m6 10v-5h.582m15.356-2A8.001 8.001 0 0014 20.59V12M18 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>\
+                        </div>\
+                        <h3 class="text-2xl font-semibold text-gray-900 mb-4 text-center">Recycling & Diversion Programs</h3>\
+                        <p class="text-gray-600 text-center">\
+                            Dedicated services for responsible recycling and waste reduction initiatives.\
+                        </p>\
+                    </div>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- Google Calendar Section -->\
+        <section id="calendar" class="py-16 md:py-24 bg-gray-50">\
+            <div class="container mx-auto px-6 max-w-6xl">\
+                <h2 class="text-4xl font-bold text-center text-emerald-700 mb-12">Our Schedule & Availability</h2>\
+                <div class="flex justify-center">\
+                    <!-- Responsive container for the iframe -->\
+                    <div class="calendar-container w-full max-w-full lg:max-w-4xl">\
+                        <iframe\
+                            src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FNew_York&showPrint=0&src=c3dpZnRsaWZ0dmFsZXRAZ21haWwuY29t&src=ZW4udXNhI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039be5&color=%230b8043"\
+                            style="border:solid 1px #777"\
+                            width="800"\
+                            height="600"\
+                            frameborder="0"\
+                            scrolling="no">\
+                        </iframe>\
+                    </div>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- About Section -->\
+        <section id="about" class="py-16 md:py-24 bg-white">\
+            <div class="container mx-auto px-6 max-w-6xl">\
+                <div class="flex flex-col md:flex-row items-center gap-12">\
+                    <div class="md:w-1/2">\
+                        <img src="https://placehold.co/600x400/16A34A/FFFFFF?text=Sustainable+Solutions" alt="Sustainable Waste Solutions" class="rounded-xl shadow-xl w-full h-auto object-cover">\
+                    </div>\
+                    <div class="md:w-1/2 text-center md:text-left">\
+                        <h2 class="text-4xl font-bold text-emerald-700 mb-6">About SwiftLift Valet</h2>\
+                        <p class="text-lg text-gray-700 mb-4">\
+                            At SwiftLift Valet, we are dedicated to protecting our planet through responsible waste management. Our mission is to provide efficient and sustainable disposal and recycling services, ensuring a cleaner, healthier environment for future generations.\
+                        </p>\
+                        <p class="text-lg text-gray-700">\
+                            Our team is committed to environmentally sound practices, utilizing advanced methods to minimize landfill waste and promote resource recovery. We believe in making green living accessible and hassle-free.\
+                        </p>\
+                    </div>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- Call to Action Section -->\
+        <section class="py-16 bg-emerald-700 text-white text-center">\
+            <div class="container mx-auto px-6 max-w-4xl">\
+                <h2 class="text-4xl font-bold mb-6">Ready for a Greener Tomorrow?</h2>\
+                <p class="text-xl mb-8 opacity-90">\
+                    Partner with us for sustainable waste solutions. Contact us for a personalized plan.\
+                </p>\
+                <a href="#contact" class="inline-block bg-white text-emerald-700 hover:bg-emerald-50 hover:scale-105 transform transition-all duration-300 font-bold py-4 px-8 rounded-full shadow-lg text-lg">\
+                    Get Your Green Quote\
+                </a>\
+            </div>\
+        </section>\
+\
+        <!-- Contact Section -->\
+        <section id="contact" class="py-16 md:py-24 bg-gray-100">\
+            <div class="container mx-auto px-6 max-w-4xl">\
+                <h2 class="text-4xl font-bold text-center text-emerald-700 mb-12">Contact Us</h2>\
+                <div class="bg-white rounded-xl shadow-lg p-8 md:p-12">\
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">\
+                        <div>\
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Get in Touch</h3>\
+                            <p class="text-gray-600 mb-2 flex items-center">\
+                                <svg class="w-5 h-5 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.243 5.757a6 6 0 10-.985 7.914l3.41 3.41a1 1 0 001.414-1.414l-3.41-3.41a6 6 0 00-.439-6.49M10 10a2 2 0 11-4 0 2 2 0 014 0z" clip-rule="evenodd"></path></svg>\
+                                123 Eco Blvd, Green City, GC 98765\
+                            </p>\
+                            <p class="text-gray-600 mb-2 flex items-center">\
+                                <svg class="w-5 h-5 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.774a11.037 11.037 0 006.103 6.103l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg>\
+                                <a href="tel:+15559876543" class="hover:underline">(555) 987-6543</a>\
+                            </p>\
+                            <p class="text-gray-600 mb-2 flex items-center">\
+                                <svg class="w-5 h-5 text-emerald-500 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>\
+                                <a href="mailto:info@swiftliftvalet.com" class="hover:underline">info@swiftliftvalet.com</a>\
+                            </p>\
+                        </div>\
+                        <div>\
+                            <h3 class="text-2xl font-semibold text-gray-900 mb-4">Business Hours</h3>\
+                            <p class="text-gray-600">Monday - Friday: 8:00 AM - 5:00 PM</p>\
+                            <p class="text-gray-600">Saturday: 9:00 AM - 1:00 PM</p>\
+                            <p class="text-gray-600">Sunday: Closed</p>\
+                        </div>\
+                    </div>\
+\
+                    <form id="contactForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">\
+                        <div>\
+                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">Name</label>\
+                            <input type="text" id="name" name="name" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="Your Name" required>\
+                        </div>\
+                        <div>\
+                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">Email</label>\
+                            <input type="email" id="email" name="email" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="your@example.com" required>\
+                        </div>\
+                        <div class="md:col-span-2">\
+                            <label for="message" class="block text-gray-700 text-sm font-bold mb-2">Message</label>\
+                            <textarea id="message" name="message" rows="5" class="shadow appearance-none border rounded-lg w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-emerald-500" placeholder="How can we help you achieve a cleaner environment?" required></textarea>\
+                        </div>\
+                        <div class="md:col-span-2 text-center flex flex-col sm:flex-row justify-center items-center gap-4 mt-6">\
+                            <button type="submit" class="bg-emerald-600 text-white font-bold py-3 px-8 rounded-full hover:bg-emerald-700 transition duration-300 transform hover:scale-105 shadow-md">\
+                                Send Message\
+                            </button>\
+                        </div>\
+                    </form>\
+                    <div id="form-message" class="mt-4 p-3 rounded-lg text-center hidden"></div>\
+                </div>\
+            </div>\
+        </section>\
+\
+        <!-- FAQ Section -->\
+        <section id="faq" class="py-16 md:py-24 bg-gray-50">\
+            <div class="container mx-auto px-6 max-w-4xl">\
+                <h2 class="text-4xl font-bold text-center text-emerald-700 mb-12">Frequently Asked Questions</h2>\
+                <div class="bg-white rounded-xl shadow-lg p-8 md:p-12 space-y-6">\
+                    <!-- FAQ Item 1 -->\
+                    <div class="border-b border-gray-200 pb-4">\
+                        <button class="flex justify-between items-center w-full text-left font-semibold text-lg text-gray-900 focus:outline-none" onclick="toggleFaq('faq1')">\
+                            What types of waste do you handle?\
+                            <svg class="w-6 h-6 text-emerald-500 transform transition-transform duration-300" id="arrow-faq1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>\
+                        </button>\
+                        <div id="faq1" class="mt-3 text-gray-600 hidden">\
+                            We handle a wide range of waste, including general household trash, commercial waste, recyclables (plastics, paper, glass, metal), and green waste. For specific or hazardous waste, please contact us directly.\
+                        </div>\
+                    </div>\
+\
+                    <!-- FAQ Item 2 -->\
+                    <div class="border-b border-gray-200 pb-4">\
+                        <button class="flex justify-between items-center w-full text-left font-semibold text-lg text-gray-900 focus:outline-none" onclick="toggleFaq('faq2')">\
+                            How do I schedule a pickup?\
+                            <svg class="w-6 h-6 text-emerald-500 transform transition-transform duration-300" id="arrow-faq2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>\
+                        </button>\
+                        <div id="faq2" class="mt-3 text-gray-600 hidden">\
+                            You can schedule a pickup by filling out the contact form on our website, calling us at (555) 987-6543, or emailing info@swiftliftvalet.com. Our team will get back to you promptly to arrange services.\
+                        </div>\
+                    </div>\
+\
+                    <!-- FAQ Item 3 -->\
+                    <div class="border-b border-gray-200 pb-4">\
+                        <button class="flex justify-between items-center w-full text-left font-semibold text-lg text-gray-900 focus:outline-none" onclick="toggleFaq('faq3')">\
+                            Do you offer recycling services?\
+                            <svg class="w-6 h-6 text-emerald-500 transform transition-transform duration-300" id="arrow-faq3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>\
+                        </button>\
+                        <div id="faq3" class="mt-3 text-gray-600 hidden">\
+                            Yes, sustainability is at our core. We offer comprehensive recycling programs for various materials, including paper, cardboard, plastics, glass, and metals. We also focus on diverting organic waste for composting.\
+                        </div>\
+                    </div>\
+\
+                    <!-- FAQ Item 4 -->\
+                    <div class="border-b border-gray-200 pb-4">\
+                        <button class="flex justify-between items-center w-full text-left font-semibold text-lg text-gray-900 focus:outline-none" onclick="toggleFaq('faq4')">\
+                            What are your service areas?\
+                            <svg class="w-6 h-6 text-emerald-500 transform transition-transform duration-300" id="arrow-faq4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>\
+                        </button>\
+                        <div id="faq4" class="mt-3 text-gray-600 hidden">\
+                            SwiftLift Valet proudly serves Green City and surrounding communities. Please contact us with your specific location to confirm service availability.\
+                        </div>\
+                    </div>\
+\
+                    <!-- FAQ Item 5 -->\
+                    <div>\
+                        <button class="flex justify-between items-center w-full text-left font-semibold text-lg text-gray-900 focus:outline-none" onclick="toggleFaq('faq5')">\
+                            How do you ensure eco-friendly practices?\
+                            <svg class="w-6 h-6 text-emerald-500 transform transition-transform duration-300" id="arrow-faq5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>\
+                        </button>\
+                        <div id="faq5" class="mt-3 text-gray-600 hidden">\
+                            We prioritize minimizing environmental impact by optimizing collection routes to reduce emissions, promoting comprehensive recycling and composting, and partnering with certified disposal facilities that adhere to strict environmental standards.\
+                        </div>\
+                    </div>\
+                </div>\
+            </div>\
+        </section>\
+\
+    </main>\
+\
+    <!-- Footer Section -->\
+    <footer class="bg-gray-800 text-white py-8">\
+        <div class="container mx-auto px-6 text-center">\
+            <p class="mb-4">&copy; 2025 SwiftLift Valet. All rights reserved.</p>\
+            <div class="flex justify-center space-x-6">\
+                <!-- Social media icons -->\
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">\
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.776-3.89 1.094 0 2.24.195 2.24.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33V22C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg>\
+                </a>\
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">\
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.002 3.714.051 1.104.067 1.791.245 2.336.467.464.192.863.454 1.22.811.358.358.62.757.812 1.22.222.545.404 1.232.47 2.336.049.93.051 1.284.051 3.714v.007c0 2.43-.002 2.784-.051 3.714-.067 1.104-.245 1.791-.467 2.336-.192.464-.454.863-.811 1.22-.358.357-.757.62-1.22.812-.545.222-1.232.404-2.336.47-.93.049-1.284.051-3.714.051h-.007c-2.43 0-2.784-.002-3.714-.051-1.104-.067-1.791-.245-2.336-.467-.464-.192-.863-.454-1.22-.811-.357-.358-.62-.757-.812-1.22-.222-.545-.404-1.232-.47-2.336-.049-.93-.051-1.284-.051-3.714v-.007c0-2.43.002-2.784.051-3.714.067-1.104.245-1.791.467-2.336.192-.464.454.863.811 1.22.358.357.757.62 1.22.812.545.222 1.232.404 2.336.47.93-.049 1.284-.051 3.714-.051h.007zM12 4.908c-3.931 0-7.108 3.177-7.108 7.108S8.069 19.124 12 19.124s7.108-3.177 7.108-7.108S15.931 4.908 12 4.908zm0 2.108c2.769 0 5 2.231 5 5s-2.231 5-5 5-5-2.231-5-5 2.231-5 5-5zm6.825-4.5c-.754 0-1.229.071-1.655.195-.447.13-.758.261-1.047.456-.289.195-.533.406-.723.67-.19.264-.325.568-.42.883-.095.315-.152.66-.183 1.05-.03.39-.047.66-.047 1.05V12c0 .39.017.66.047 1.05.03.39.088.735.183 1.05.095.315.23.619.42.883.19.264.434.475.723.67.289.195.599.326 1.047.456.426.124-.9-.195-1.655-.195zM17.25 5.5h.01v.01h-.01v-.01z" clip-rule="evenodd"></path></svg>\
+                </a>\
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">\
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.007-.532A8.318 8.318 0 0022 5.923a8.13 8.13 0 01-2.357.646 4.11 4.11 0 001.804-2.27 8.22 8.22 0 01-2.606.996 4.108 4.108 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.073 4.073 0 01.8 10.072v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.271a11.616 11.616 0 006.29 1.88z"></path></svg>\
+                </a>\
+            </div>\
+        </div>\
+    </footer>\
+\
+    <script>\
+        // Smooth scrolling for navigation links\
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => \{\
+            anchor.addEventListener('click', function (e) \{\
+                e.preventDefault();\
+\
+                document.querySelector(this.getAttribute('href')).scrollIntoView(\{\
+                    behavior: 'smooth'\
+                \});\
+\
+                // Close mobile menu if open\
+                const mobileMenu = document.getElementById('mobile-menu');\
+                if (!mobileMenu.classList.contains('hidden')) \{\
+                    mobileMenu.classList.add('hidden');\
+                \}\
+            \});\
+        \});\
+\
+        // Mobile menu toggle\
+        const mobileMenuButton = document.getElementById('mobile-menu-button');\
+        const mobileMenu = document.getElementById('mobile-menu');\
+\
+        mobileMenuButton.addEventListener('click', () => \{\
+            mobileMenu.classList.toggle('hidden');\
+        \});\
+\
+        // Simple contact form submission handler\
+        const contactForm = document.getElementById('contactForm');\
+        const formMessage = document.getElementById('form-message');\
+\
+        contactForm.addEventListener('submit', function(e) \{\
+            e.preventDefault();\
+\
+            const name = document.getElementById('name').value;\
+            const email = document.getElementById('email').value;\
+            const message = document.getElementById('message').value;\
+\
+            console.log('Contact Form Submitted!');\
+            console.log('Name:', name);\
+            console.log('Email:', email);\
+            console.log('Message:', message);\
+\
+            formMessage.classList.remove('hidden');\
+            formMessage.classList.remove('bg-red-100', 'text-red-700');\
+            formMessage.classList.add('bg-green-100', 'text-green-700');\
+            formMessage.textContent = 'Thank you for your message, ' + name + '! We will get back to you shortly.';\
+\
+            contactForm.reset(); // Clear the form\
+\
+            setTimeout(() => \{\
+                formMessage.classList.add('hidden');\
+            \}, 5000); // Hide message after 5 seconds\
+        \});\
+\
+        // FAQ Toggle Functionality\
+        function toggleFaq(id) \{\
+            const answer = document.getElementById(id);\
+            const arrow = document.getElementById('arrow-' + id);\
+            if (answer.classList.contains('hidden')) \{\
+                answer.classList.remove('hidden');\
+                arrow.classList.remove('rotate-0');\
+                arrow.classList.add('rotate-180');\
+            \} else \{\
+                answer.classList.add('hidden');\
+                arrow.classList.remove('rotate-180');\
+                arrow.classList.add('rotate-0');\
+            \}\
+        \}\
+    </script>\
+</body>\
+</html>\
+}
